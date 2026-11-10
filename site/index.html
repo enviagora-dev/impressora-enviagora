@@ -5,54 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Impressora Enviagora — instalação</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap">
 <style>
+  /* Marca Enviagora 2026 ("Autoridade Tecnica"): verde profundo, creme, cinza nevoa, neon so de acento.
+     Neon nunca e cor de texto sobre fundo claro. */
   :root{
-    --verde:#16a34a; --verde-escuro:#15803d; --tinta:#111827; --fraco:#6b7280;
-    --linha:#e5e7eb; --fundo:#f9fafb; --papel:#fff;
-    --alerta-fundo:#fffbeb; --alerta-linha:#fcd34d; --alerta-tinta:#78350f;
+    --verde:#123336; --neon:#C4FF57; --neon-hover:#D4FF80; --creme:#FAFAF5; --nevoa:#DEE3E0; --eucalipto:#B0C2BF;
+    --fundo:var(--creme); --papel:#FFFFFF; --tinta:var(--verde); --fraco:#4A6366; --linha:var(--nevoa);
+    --cmd-fundo:var(--verde); --cmd-tinta:var(--creme);
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --tinta:#f3f4f6; --fraco:#9ca3af; --linha:#374151; --fundo:#111827; --papel:#1f2937;
-      --alerta-fundo:#292014; --alerta-linha:#a16207; --alerta-tinta:#fde68a;
+      --fundo:#0D2629; --papel:var(--verde); --tinta:var(--creme); --fraco:var(--eucalipto);
+      --linha:#24474B; --cmd-fundo:#081A1C; color-scheme:dark;
     }
   }
   *{box-sizing:border-box}
   body{
     margin:0;background:var(--fundo);color:var(--tinta);
-    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    padding:24px 16px 64px;
+    font:16px/1.55 "Satoshi",Inter,-apple-system,"Segoe UI",Arial,sans-serif;
+    padding:0 0 64px;
   }
-  .caixa{max-width:680px;margin:0 auto}
-  header{text-align:center;margin-bottom:28px}
-  h1{font-size:26px;line-height:1.25;margin:0 0 6px;letter-spacing:-.3px}
+  .topo{background:var(--verde);color:var(--creme);padding:36px 0 40px;margin-bottom:28px}
+  .topo .caixa{display:grid;gap:18px;justify-items:start}
+  .logo{width:220px;max-width:100%;height:auto;display:block}
+  .caixa{max-width:680px;margin:0 auto;padding:0 16px}
+  .olho{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--eucalipto);margin:0}
+  h1{font-weight:500;font-size:30px;line-height:1.05;letter-spacing:.02em;text-transform:uppercase;margin:0}
   .sub{color:var(--fraco);font-size:15px;margin:0}
+  .topo .sub{color:#C9D3D1}
   .versao{
-    display:inline-block;margin-top:14px;padding:6px 16px;border-radius:999px;
-    background:var(--verde);color:#fff;font-weight:700;font-size:15px;letter-spacing:.3px;
+    display:inline-block;padding:6px 16px;border-radius:999px;
+    background:var(--neon);color:var(--verde);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    font-variant-numeric:tabular-nums;
   }
   .cartao{
-    background:var(--papel);border:1px solid var(--linha);border-radius:14px;
+    background:var(--papel);border:1px solid var(--linha);border-radius:16px;
     padding:22px;margin-bottom:18px;
   }
   .btn{
-    display:block;width:100%;padding:16px;border-radius:12px;text-decoration:none;
-    text-align:center;font-weight:700;font-size:17px;border:2px solid transparent;
+    display:block;width:100%;padding:16px;border-radius:8px;text-decoration:none;
+    text-align:center;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;border:2px solid transparent;
   }
-  .btn-principal{background:var(--verde);color:#fff}
-  .btn-principal:hover{background:var(--verde-escuro)}
-  .btn-secundario{background:transparent;color:var(--tinta);border-color:var(--linha);margin-top:10px;font-size:15px}
-  .btn-secundario:hover{border-color:var(--verde)}
+  .btn-principal{background:var(--neon);color:var(--verde)}
+  .btn-principal:hover{background:var(--neon-hover)}
+  .btn-secundario{background:transparent;color:var(--tinta);border-color:var(--linha);margin-top:10px}
+  .btn-secundario:hover{border-color:var(--tinta)}
   .legenda{color:var(--fraco);font-size:13px;text-align:center;margin:10px 0 0}
-  h2{font-size:17px;margin:0 0 14px;letter-spacing:-.2px}
+  h2{font-weight:500;font-size:17px;line-height:1.15;letter-spacing:.02em;text-transform:uppercase;margin:0 0 14px}
   ol{margin:0;padding-left:0;list-style:none;counter-reset:passo}
-  ol li{
-    counter-increment:passo;position:relative;padding:0 0 16px 44px;margin:0;
-  }
+  ol li{counter-increment:passo;position:relative;padding:0 0 16px 44px;margin:0}
   ol li::before{
-    content:counter(passo);position:absolute;left:0;top:1px;width:28px;height:28px;
-    border-radius:50%;background:var(--verde);color:#fff;font-weight:700;font-size:14px;
-    display:flex;align-items:center;justify-content:center;
+    content:counter(passo,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-weight:300;font-size:20px;line-height:1.3;color:var(--fraco);font-variant-numeric:tabular-nums;
   }
   ol li:last-child{padding-bottom:0}
   code{
@@ -61,12 +66,14 @@
     white-space:nowrap;
   }
   .destaque{
-    background:var(--alerta-fundo);border:1px solid var(--alerta-linha);
-    color:var(--alerta-tinta);border-radius:12px;padding:16px 18px;margin:16px 0 0;
+    background:var(--fundo);border:1px solid var(--linha);border-left:4px solid var(--tinta);
+    border-radius:10px;padding:16px 18px;margin:16px 0 0;
   }
-  .destaque strong{display:block;margin-bottom:4px;font-size:15px}
+  .destaque strong{display:block;margin-bottom:4px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
   .destaque p{margin:0;font-size:14.5px;line-height:1.55}
   .nota{color:var(--fraco);font-size:14px;margin:14px 0 0}
+  .nota strong{color:var(--tinta)}
+  a{color:var(--tinta)}
   footer{text-align:center;color:var(--fraco);font-size:13px;margin-top:32px;line-height:1.8}
   footer a{color:var(--fraco)}
   .id{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
@@ -74,31 +81,64 @@
     background:var(--fundo);border:1px solid var(--linha);border-bottom-width:2px;
     border-radius:5px;padding:1px 6px;font:600 13px ui-monospace,Menlo,Consolas,monospace;
   }
-  /* Bloco de comando. O botão de copiar não é enfeite: são 60 máquinas, e digitar
-     uma URL dessas à mão em cada uma é erro garantido. */
+  /* Bloco de comando. O botao de copiar nao e enfeite: sao 60 maquinas, e digitar
+     uma URL dessas a mao em cada uma e erro garantido. */
   .bloco-cmd{position:relative;margin:16px 0 12px}
   .bloco-cmd pre{
-    margin:0;background:#0f172a;color:#e2e8f0;border-radius:10px;
+    margin:0;background:var(--cmd-fundo);color:var(--cmd-tinta);border-radius:10px;
     padding:44px 16px 16px;overflow-x:auto;
     font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
   .btn-copiar{
     position:absolute;top:8px;right:8px;z-index:1;
-    background:var(--verde);color:#fff;border:0;border-radius:7px;
-    padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
+    background:var(--neon);color:var(--verde);border:0;border-radius:8px;
+    padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:inherit;
   }
-  .btn-copiar:hover{background:var(--verde-escuro)}
-  .btn-copiar.feito{background:#334155}
+  .btn-copiar:hover{background:var(--neon-hover)}
+  .btn-copiar.feito{background:var(--eucalipto)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--neon);outline-offset:2px}
 </style>
 </head>
 <body>
-<div class="caixa">
-
-  <header>
+<header class="topo">
+  <div class="caixa">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768.000 79.422" width="768.000" height="79.422" fill-rule="nonzero" role="img" aria-label="Logo Enviagora">
+  <g fill="#C4FF57">
+    <path d="M 79.64453100000003,44.62109400000003 L 63.164061999999944,31.167969000000028 L 63.164061999999944,79.42187600000005 L 79.64453100000003,79.42187600000005 L 79.64453100000003,44.62109400000003"/>
+    <path d="M 63.164061999999944,0.0 L 0.0,0.5351570000000265 L 0.0,16.636719000000028 L 56.6875,16.101563 L 0.0,67.87109400000003 L 0.0,79.414063 L 11.441406000000029,79.42187600000005 L 79.64453100000003,15.789062999999999"/>
+  </g>
+  <g fill="#FAFAF5">
+    <path d="M 427.77734399999997,58.76171900000003 L 435.796875,50.742188 L 435.796875,58.76171900000003 L 427.77734399999997,58.76171900000003"/>
+    <path d="M 452.3242190000001,58.76171900000003 L 435.796875,58.76171900000003 L 435.796875,50.742188 L 452.3242190000001,50.742188 L 452.3242190000001,58.76171900000003"/>
+    <path d="M 507.77343799999994,50.17578199999997 L 515.7929690000001,42.15624999999994 L 515.7929690000001,50.17578199999997 L 507.77343799999994,50.17578199999997"/>
+    <path d="M 536.5351559999999,50.17578199999997 L 515.7929690000001,50.17578199999997 L 515.7929690000001,42.15624999999994 L 536.5351559999999,42.15624999999994 L 536.5351559999999,50.17578199999997"/>
+    <path d="M 293.96875,17.26953199999997 L 293.96875,71.882813 L 285.69921899999997,71.882813 L 243.02343800000006,28.81640699999997 L 243.02343800000006,71.882813 L 233.97265600000003,71.882813 L 233.97265600000003,17.26953199999997 L 243.96093800000006,17.26953199999997 L 284.83984399999997,58.69921900000003 L 284.83984399999997,17.26953199999997 L 293.96875,17.26953199999997"/>
+    <path d="M 314.02343800000006,17.26953199999997 L 337.03906199999994,62.28515699999997 L 360.05078100000003,17.26953199999997 L 370.27343800000006,17.26953199999997 L 341.953125,71.882813 L 331.96484399999997,71.882813 L 303.64453100000003,17.26953199999997 L 314.02343800000006,17.26953199999997"/>
+    <path d="M 380.02734399999997,17.26953199999997 L 389.390625,17.26953199999997 L 389.390625,71.882813 L 380.02734399999997,71.882813 L 380.02734399999997,17.26953199999997"/>
+    <path d="M 447.04296899999997,50.742188 L 433.703125,25.460938 L 420.36328100000003,50.742188 L 416.14843800000006,58.69921900000003 L 409.203125,71.882813 L 399.0625,71.882813 L 428.62890600000003,17.26953199999997 L 438.92968800000006,17.26953199999997 L 468.421875,71.882813 L 458.1992190000001,71.882813 L 451.17968799999994,58.69921900000003 L 447.04296899999997,50.742188"/>
+    <path d="M 544.9609379999999,44.578126000000054 C 544.9609379999999,26.554688 557.9140620000001,15.632812999999999 578.8984379999999,15.632812999999999 C 599.8867190000001,15.632812999999999 612.8398440000001,26.554688 612.8398440000001,44.578126000000054 C 612.8398440000001,62.59765699999997 599.8867190000001,73.51953199999997 578.8984379999999,73.51953199999997 C 557.9140620000001,73.51953199999997 544.9609379999999,62.59765699999997 544.9609379999999,44.578126000000054 M 603.2421879999999,44.578126000000054 C 603.2421879999999,31.312499999999943 593.7226559999999,23.902344000000028 578.8984379999999,23.902344000000028 C 564.0742190000001,23.902344000000028 554.4804690000001,31.312499999999943 554.4804690000001,44.578126000000054 C 554.4804690000001,57.83984400000003 563.9960940000001,65.25390699999997 578.8984379999999,65.25390699999997 C 593.7226559999999,65.25390699999997 603.2421879999999,57.83984400000003 603.2421879999999,44.578126000000054"/>
+    <path d="M 758.578125,17.531249999999943 L 755.7695309999999,17.531249999999943 L 755.7695309999999,23.015626000000054 L 754.3867190000001,23.015626000000054 L 754.3867190000001,17.531249999999943 L 751.5585940000001,17.531249999999943 L 751.5585940000001,16.343749999999943 L 758.578125,16.343749999999943 L 758.578125,17.531249999999943 M 768.0,16.343749999999943 L 768.0,23.015626000000054 L 766.671875,23.015626000000054 L 766.671875,18.195313 L 763.7890620000001,21.882813 L 763.7304690000001,21.882813 L 760.8632809999999,18.195313 L 760.8632809999999,23.015626000000054 L 759.5546879999999,23.015626000000054 L 759.5546879999999,16.343749999999943 L 760.9609379999999,16.343749999999943 L 763.7695309999999,20.06640699999997 L 766.6367190000001,16.343749999999943 L 768.0,16.343749999999943"/>
+    <path d="M 166.5625,63.69140699999997 L 220.94140600000003,63.69140699999997 L 220.94140600000003,71.882813 L 166.5625,71.882813 L 166.5625,63.69140699999997"/>
+    <path d="M 166.5625,39.92578199999997 L 213.140625,39.92578199999997 L 213.140625,48.242188 L 166.5625,48.242188 L 166.5625,39.92578199999997"/>
+    <path d="M 166.5625,17.26953199999997 L 220.11718800000006,17.26953199999997 L 220.11718800000006,25.460938 L 166.5625,25.460938 L 166.5625,17.26953199999997"/>
+    <path d="M 166.5625,25.460938 L 175.84765600000003,35.054688 L 175.84765600000003,25.460938 L 166.5625,25.460938"/>
+    <path d="M 621.7304690000001,25.460938 L 631.015625,35.054688 L 631.015625,25.460938 L 621.7304690000001,25.460938"/>
+    <path d="M 175.84765600000003,71.882813 L 166.5625,71.882813 L 166.5625,44.57421900000003 L 175.84765600000003,44.57421900000003 L 175.84765600000003,71.882813"/>
+    <path d="M 717.1445309999999,58.76171900000003 L 725.1640620000001,50.742188 L 725.1640620000001,58.76171900000003 L 717.1445309999999,58.76171900000003"/>
+    <path d="M 741.6914059999999,58.76171900000003 L 725.1640620000001,58.76171900000003 L 725.1640620000001,50.742188 L 741.6914059999999,50.742188 L 741.6914059999999,58.76171900000003"/>
+    <path d="M 736.4101559999999,50.742188 L 723.0703120000001,25.460938 L 709.7304690000001,50.742188 L 705.515625,58.69921900000003 L 698.5703120000001,71.882813 L 688.4296879999999,71.882813 L 718.0,17.26953199999997 L 728.3007809999999,17.26953199999997 L 757.7890620000001,71.882813 L 747.5664059999999,71.882813 L 740.546875,58.69921900000003 L 736.4101559999999,50.742188"/>
+    <path d="M 527.421875,42.31249999999994 L 527.421875,50.34765699999997 L 527.484375,50.34765699999997 L 527.484375,56.59374999999994 C 523.5039059999999,62.83203199999997 515.703125,65.32812600000005 506.109375,65.32812600000005 C 490.4257809999999,65.32812600000005 480.828125,58.30859400000003 480.828125,44.578126000000054 C 480.828125,30.843749999999943 490.2695309999999,23.824219000000028 505.640625,23.824219000000028 C 514.6953120000001,23.824219000000028 521.0625,26.44140699999997 525.8867190000001,31.820313 L 532.3945309999999,25.265626000000054 C 526.8242190000001,19.95703199999997 518.0351559999999,15.632812999999999 505.5625,15.632812999999999 C 484.1835940000001,15.632812999999999 471.3125,26.554688 471.3125,44.578126000000054 C 471.3125,62.59765699999997 484.1835940000001,73.51953199999997 505.7148440000001,73.51953199999997 C 520.6953120000001,73.51953199999997 531.5429690000001,67.66796900000003 536.5351559999999,59.632813 L 536.5351559999999,42.31249999999994 L 527.421875,42.31249999999994"/>
+    <path d="M 664.875,51.59765699999997 C 674.3945309999999,49.882813 680.9492190000001,44.109376000000054 680.9492190000001,34.66796900000003 C 680.9492190000001,23.355469000000028 671.5859379999999,17.26953199999997 658.8671879999999,17.26953199999997 L 621.734375,17.26953199999997 L 621.734375,25.460938 L 658.2421879999999,25.460938 C 666.046875,25.460938 671.3515620000001,27.960938 671.3515620000001,34.74609400000003 C 671.3515620000001,41.53515699999997 666.046875,44.03124999999994 658.2421879999999,44.03124999999994 L 621.734375,44.03124999999994 L 621.734375,71.882813 L 631.09375,71.882813 L 631.09375,52.06640699999997 L 654.109375,52.06640699999997 L 671.0390620000001,71.882813 L 682.5859379999999,71.882813 L 664.875,51.59765699999997"/>
+    <path d="M 631.015625,25.460938 L 621.7304690000001,25.460938 L 621.7304690000001,44.03124999999994 L 631.015625,44.03124999999994 L 631.015625,25.460938"/>
+  </g>
+</svg>
+    <p class="olho">Instalação nas máquinas da operação</p>
     <h1>Impressora Enviagora</h1>
-    <p class="sub">Ajusta e imprime as etiquetas de envio no formato 100&times;150&nbsp;mm</p>
+    <p class="sub">Painel de Operação: ajusta e imprime as etiquetas de envio no formato 100&times;150&nbsp;mm e abre os sistemas da operação</p>
     <div class="versao">versão {{VERSAO}}</div>
-  </header>
+  </div>
+</header>
+<div class="caixa">
 
   <div class="cartao">
     <a class="btn btn-principal" href="#passo1">Começar a instalação</a>
@@ -120,7 +160,8 @@
       <pre id="cmd-preparo">Set-ExecutionPolicy -Scope Process Bypass -Force
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/enviagora-dev/impressora-enviagora/main/scripts/instalar.ps1 -OutFile "$env:TEMP\instalar-enviagora.ps1"
-&amp; "$env:TEMP\instalar-enviagora.ps1"</pre>
+&amp; "$env:TEMP\instalar-enviagora.ps1"
+Stop-Process -Name chrome -Force -ErrorAction SilentlyContinue</pre>
     </div>
 
     <p class="nota">O script libera a instalação no Windows, baixa a última versão e <strong>abre a pasta com o arquivo</strong> no fim. Ele mostra na tela o que fazer em seguida — é o mesmo que está aqui embaixo.</p>
@@ -128,8 +169,9 @@ Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/enviagora-d
   </div>
 
   <div class="cartao">
-    <h2>Passo 2 — Fechar e reabrir o Chrome</h2>
-    <p class="nota">Feche o Chrome <strong>por completo</strong> e abra de novo.</p>
+    <h2>Passo 2 — Reabrir o Chrome</h2>
+    <p class="nota">A última linha do bloco já fecha o Chrome (as abas abertas fecham junto). Abra o Chrome de novo <strong>pela barra de tarefas ou pelo menu Iniciar</strong>.</p>
+    <p class="nota"><strong>Nunca abra o Chrome pelo PowerShell.</strong> Aberto pela janela de administrador, ele não aceita arrastar o arquivo no passo 3.</p>
     <div class="destaque">
       <strong>Não pule este passo.</strong>
       <p>A liberação que o script fez no Windows só passa a valer quando o Chrome reinicia. Pulando, a instalação do passo 3 é recusada e parece que o script não funcionou.</p>
