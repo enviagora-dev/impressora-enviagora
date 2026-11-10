@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Painel de Operação",
-  "version": "16.37.1",
+  "version": "16.37.2",
   "description": "Painel de Operação da Enviagora: menu com os sistemas da operação e impressão de etiquetas 10x15 (Amazon, Shopee, Mercado Livre, Correios).",
   "permissions": [
     "tabs",

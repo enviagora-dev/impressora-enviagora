@@ -88,7 +88,15 @@ const arquivos = arquivosDaExtensao();
 // vazado num repo publico. Vem das variaveis do repo (Settings -> Variables -> Actions). Sem elas o
 // menu abre normal (leitura publica); so o "Editar menu" nao consegue entrar. No release (EXIGIR_CRX)
 // a falta delas aborta, para nao publicar uma versao em que o PCP nao consegue editar.
-const menuIds = { __API_KEY__: process.env.MENU_API_KEY, __OAUTH_CLIENT_ID__: process.env.MENU_OAUTH_CLIENT_ID };
+// trim() tira tambem o BOM (U+FEFF): a 16.37.1 saiu com a chave colada com BOM e nenhum login novo
+// passava ("API key not valid"). O formato e conferido abaixo para isso nao voltar calado.
+const menuIds = { __API_KEY__: (process.env.MENU_API_KEY || '').trim(), __OAUTH_CLIENT_ID__: (process.env.MENU_OAUTH_CLIENT_ID || '').trim() };
+const formatoMenu = { __API_KEY__: /^AIza[0-9A-Za-z_-]{35}$/, __OAUTH_CLIENT_ID__: /^[0-9]+-[0-9a-z]+\.apps\.googleusercontent\.com$/ };
+const invalidoMenu = Object.entries(menuIds).filter(([k, v]) => v && !formatoMenu[k].test(v)).map(([k]) => k);
+if (invalidoMenu.length) {
+  console.error(cor.erro('\n  Formato invalido em ' + invalidoMenu.join(' e ') + ' (variaveis do repo: espaco ou caractere invisivel?). Build abortado.\n'));
+  process.exit(1);
+}
 const faltaMenu = Object.entries(menuIds).filter(([, v]) => !v).map(([k]) => k === '__API_KEY__' ? 'MENU_API_KEY' : 'MENU_OAUTH_CLIENT_ID');
 if (faltaMenu.length && process.env.EXIGIR_CRX) {
   console.error(cor.erro('\n  Faltam ' + faltaMenu.join(' e ') + ' (variaveis do repo). Sem elas o "Editar menu" nao entra. Build abortado.\n'));
